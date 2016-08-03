@@ -1,15 +1,8 @@
-var express = require('express');
-var swig = require('swig');
-swig.setDefaults({ cache: false});
-var path = require('path');
 
-var app = express();
+var http = require('http');
 
-app.set('view engine', 'html');
-app.engine('html', swig.renderFile);
+var server = http.createServer(require('./app'));
 
-app.get('/', function(req, res, next){
-	res.render('index');
+server.listen(process.env.PORT, function(){
+  console.log('you are listening on port ' + process.env.PORT);
 });
-
-app.listen(process.env.PORT); 
